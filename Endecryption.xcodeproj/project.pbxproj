@@ -11,6 +11,8 @@
 		9404126E2099931D00B7A134 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9404126D2099931D00B7A134 /* ViewController.swift */; };
 		940412702099932000B7A134 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9404126F2099932000B7A134 /* Assets.xcassets */; };
 		940412732099932000B7A134 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 940412712099932000B7A134 /* Main.storyboard */; };
+		9404127E209996E600B7A134 /* Encryptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9404127D209996E600B7A134 /* Encryptor.swift */; };
+		94CC3490209DF5410000C607 /* Decryptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94CC348F209DF5410000C607 /* Decryptor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -21,6 +23,8 @@
 		940412722099932000B7A134 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		940412742099932000B7A134 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		940412752099932000B7A134 /* Endecryption.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Endecryption.entitlements; sourceTree = "<group>"; };
+		9404127D209996E600B7A134 /* Encryptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Encryptor.swift; sourceTree = "<group>"; };
+		94CC348F209DF5410000C607 /* Decryptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Decryptor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,6 +59,8 @@
 			children = (
 				9404126B2099931D00B7A134 /* AppDelegate.swift */,
 				9404126D2099931D00B7A134 /* ViewController.swift */,
+				9404127D209996E600B7A134 /* Encryptor.swift */,
+				94CC348F209DF5410000C607 /* Decryptor.swift */,
 				9404126F2099932000B7A134 /* Assets.xcassets */,
 				940412712099932000B7A134 /* Main.storyboard */,
 				940412742099932000B7A134 /* Info.plist */,
@@ -134,6 +140,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				9404126E2099931D00B7A134 /* ViewController.swift in Sources */,
+				9404127E209996E600B7A134 /* Encryptor.swift in Sources */,
+				94CC3490209DF5410000C607 /* Decryptor.swift in Sources */,
 				9404126C2099931D00B7A134 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
