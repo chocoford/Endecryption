@@ -64,6 +64,8 @@ struct Decryptor {
             }
         }
         
+        
+        
         let keysCount = keys.count
         var i = 0
         for e in cryptograph {
@@ -78,7 +80,6 @@ struct Decryptor {
     }
     
     func multiple() -> String {
-
         var plaintext = ""
         guard key != nil,
             let key = Int(key!) else {

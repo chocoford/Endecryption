@@ -106,7 +106,7 @@ struct Encryptor {
         }
 
         let fi = (p-1) * (q-1)
-        
+        guard fi > 0 else { return "ERROR: FI IS EQUAL TO 0"}
 //        print(Int.prime(upto: fi))
         
         
@@ -122,11 +122,11 @@ struct Encryptor {
 }
 
 extension Int {
-    ///generate the primes between 2 and spcified upper limit
+    ///generate the primes between 2 and spcified upper limit (not include the upper limit)
     static func prime(upto upperLimit: Int) -> [Int] {
         var results: [Int] = {
             var result = [Int]()
-            for i in 2...upperLimit {
+            for i in 2..<upperLimit {
                 result.append(i)
             }
             return result
@@ -135,8 +135,12 @@ extension Int {
         var i = 2
 //        var ndx = 0
         while pow(Double(i), 2) <= Double(upperLimit) {
-            for j in i..<upperLimit {
+//            let resultsCopy = results
+            print(results.suffix(from: i-2).count)
+            for j in results.suffix(from: i-2) {
+//                guard results.contains(j) else { continue }
                 if j * i > upperLimit { break }
+                
                 if let index = results.index(of: j * i) {
                     results.remove(at: index)
                 }
