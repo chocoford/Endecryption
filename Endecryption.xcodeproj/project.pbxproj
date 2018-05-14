@@ -8,22 +8,32 @@
 
 /* Begin PBXBuildFile section */
 		9404126C2099931D00B7A134 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9404126B2099931D00B7A134 /* AppDelegate.swift */; };
-		9404126E2099931D00B7A134 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9404126D2099931D00B7A134 /* ViewController.swift */; };
+		9404126E2099931D00B7A134 /* EndecryptorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9404126D2099931D00B7A134 /* EndecryptorViewController.swift */; };
 		940412702099932000B7A134 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9404126F2099932000B7A134 /* Assets.xcassets */; };
 		940412732099932000B7A134 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 940412712099932000B7A134 /* Main.storyboard */; };
 		9404127E209996E600B7A134 /* Encryptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9404127D209996E600B7A134 /* Encryptor.swift */; };
+		9451CE5120A4701D0018C5C0 /* EncryptorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9451CE5020A4701D0018C5C0 /* EncryptorViewController.swift */; };
+		9451CE5420A470310018C5C0 /* DecryptorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9451CE5220A470310018C5C0 /* DecryptorViewController.swift */; };
+		9451CE5920A470940018C5C0 /* EndecryptorTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9451CE5820A470940018C5C0 /* EndecryptorTabViewController.swift */; };
+		9451CE5B20A517290018C5C0 /* KeyGeneratorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9451CE5A20A517290018C5C0 /* KeyGeneratorViewController.swift */; };
+		9451CE5D20A51CB90018C5C0 /* KeyGenerator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9451CE5C20A51CB90018C5C0 /* KeyGenerator.swift */; };
 		94CC3490209DF5410000C607 /* Decryptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94CC348F209DF5410000C607 /* Decryptor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		940412682099931D00B7A134 /* Endecryption.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Endecryption.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9404126B2099931D00B7A134 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9404126D2099931D00B7A134 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		9404126D2099931D00B7A134 /* EndecryptorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndecryptorViewController.swift; sourceTree = "<group>"; };
 		9404126F2099932000B7A134 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		940412722099932000B7A134 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		940412742099932000B7A134 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		940412752099932000B7A134 /* Endecryption.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Endecryption.entitlements; sourceTree = "<group>"; };
 		9404127D209996E600B7A134 /* Encryptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Encryptor.swift; sourceTree = "<group>"; };
+		9451CE5020A4701D0018C5C0 /* EncryptorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncryptorViewController.swift; sourceTree = "<group>"; };
+		9451CE5220A470310018C5C0 /* DecryptorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecryptorViewController.swift; sourceTree = "<group>"; };
+		9451CE5820A470940018C5C0 /* EndecryptorTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndecryptorTabViewController.swift; sourceTree = "<group>"; };
+		9451CE5A20A517290018C5C0 /* KeyGeneratorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyGeneratorViewController.swift; sourceTree = "<group>"; };
+		9451CE5C20A51CB90018C5C0 /* KeyGenerator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyGenerator.swift; sourceTree = "<group>"; };
 		94CC348F209DF5410000C607 /* Decryptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Decryptor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -58,9 +68,14 @@
 			isa = PBXGroup;
 			children = (
 				9404126B2099931D00B7A134 /* AppDelegate.swift */,
-				9404126D2099931D00B7A134 /* ViewController.swift */,
+				9451CE5820A470940018C5C0 /* EndecryptorTabViewController.swift */,
+				9404126D2099931D00B7A134 /* EndecryptorViewController.swift */,
+				9451CE5020A4701D0018C5C0 /* EncryptorViewController.swift */,
+				9451CE5220A470310018C5C0 /* DecryptorViewController.swift */,
 				9404127D209996E600B7A134 /* Encryptor.swift */,
 				94CC348F209DF5410000C607 /* Decryptor.swift */,
+				9451CE5C20A51CB90018C5C0 /* KeyGenerator.swift */,
+				9451CE5A20A517290018C5C0 /* KeyGeneratorViewController.swift */,
 				9404126F2099932000B7A134 /* Assets.xcassets */,
 				940412712099932000B7A134 /* Main.storyboard */,
 				940412742099932000B7A134 /* Info.plist */,
@@ -139,8 +154,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9404126E2099931D00B7A134 /* ViewController.swift in Sources */,
+				9451CE5920A470940018C5C0 /* EndecryptorTabViewController.swift in Sources */,
+				9451CE5120A4701D0018C5C0 /* EncryptorViewController.swift in Sources */,
+				9404126E2099931D00B7A134 /* EndecryptorViewController.swift in Sources */,
 				9404127E209996E600B7A134 /* Encryptor.swift in Sources */,
+				9451CE5B20A517290018C5C0 /* KeyGeneratorViewController.swift in Sources */,
+				9451CE5D20A51CB90018C5C0 /* KeyGenerator.swift in Sources */,
+				9451CE5420A470310018C5C0 /* DecryptorViewController.swift in Sources */,
 				94CC3490209DF5410000C607 /* Decryptor.swift in Sources */,
 				9404126C2099931D00B7A134 /* AppDelegate.swift in Sources */,
 			);

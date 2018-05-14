@@ -99,6 +99,45 @@ struct Decryptor {
         return plaintext
     }
     
+    func rsa() -> String {
+        var plaintext = ""
+        let length = cryptograph.count
+        print(length)
+        let defaultSplit: Int = {
+            for i in 2..<length {
+                if length % i == 0 {
+                    return i
+                }
+            }
+            return 1
+        }()
+        guard let keys = key?.split(separator: ","),
+            keys.count >= 2,
+            keys.count <= 3,
+            let pk = Int(keys[0]),
+            let n = Int(keys[1]) else {
+                return "INVALID KEY. CHECK IF YOU HAVE INPUT KEYS WITH WRONG FORMAT"
+        }
+        /// split num
+        var m: Int = defaultSplit
+        if keys.count == 3 {
+            m = Int(keys[2])!
+        }
+        
+        let splitedLength = length / m
+        var splitedCryptograph = ""
+        for (i, e) in cryptograph.enumerated() {
+            splitedCryptograph.append(e)
+            if i % splitedLength == splitedLength - 1 {
+                print(splitedCryptograph)
+                plaintext.append("\(Int(splitedCryptograph)!.powMod(pow: pk, mod: n))")
+                splitedCryptograph = ""
+            }
+            
+        }
+        return plaintext
+    }
+    
 }
 
 extension Int {

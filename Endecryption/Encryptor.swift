@@ -95,8 +95,8 @@ struct Encryptor {
         return cryptograph
     }
     
-    func rsa() -> String {
-        var cryptograph = ""
+    func rsaGenerator() -> String {
+//        var cryptograph = ""
         
         guard let keys = key?.split(separator: ","),
             keys.count == 2,
@@ -104,22 +104,67 @@ struct Encryptor {
             let q = Int(keys[1]) else {
                 return "INVALID KEY. CHECK IF YOU HAVE INPUT KEYS WITH WRONG FORMAT"
         }
-
+        let n = p * q
         let fi = (p-1) * (q-1)
         guard fi > 0 else { return "ERROR: FI IS EQUAL TO 0"}
 //        print(Int.prime(upto: fi))
         
+        let sk = 167
+        let pk = sk.inverse(mod: fi)
         
-        return Int.prime(upto: fi).description
+        
+        
+//        return Int.prime(upto: fi).description
+        return "KU = { \(pk), \(n) }  KR = { \(sk), \(n) }"
+    }
+    
+    func rsa() -> String {
+        var cryptograph = ""
+        let length = plaintext.count
+        print(length)
+        let defaultSplit: Int = {
+            for i in 2..<length {
+                if length % i == 0 {
+                    return i
+                }
+            }
+            return 1
+        }()
+        guard let keys = key?.split(separator: ","),
+            keys.count >= 2,
+            keys.count <= 3,
+            let sk = Int(keys[0]),
+            let n = Int(keys[1]) else {
+                return "INVALID KEY. CHECK IF YOU HAVE INPUT KEYS WITH WRONG FORMAT"
+        }
+        /// split num
+        var m: Int = defaultSplit
+        if keys.count == 3 {
+            m = Int(keys[2])!
+        }
+        
+        let splitedLength = length / m
+        var splitedPlaintext = ""
+        for (i, e) in plaintext.enumerated() {
+            splitedPlaintext.append(e)
+            if i % splitedLength == splitedLength - 1 {
+                print(splitedPlaintext)
+                cryptograph.append("\(Int(splitedPlaintext)!.powMod(pow: sk, mod: n))")
+                splitedPlaintext = ""
+            }
+            
+        }
+        return cryptograph
     }
     
     private func gcd() -> Int {
         return 1
     }
-    
-    
-    
 }
+
+
+
+
 
 extension Int {
     ///generate the primes between 2 and spcified upper limit (not include the upper limit)
@@ -150,8 +195,16 @@ extension Int {
         
         return results
     }
+    
+    func powMod(pow: Int, mod: Int) -> Int {
+        var result = self
+        /// (pow - 1) times
+        for _ in 1..<pow {
+            result = (result * self) % mod
+        }
+        return result
+    }
 }
-
 
 
 
