@@ -12,6 +12,7 @@
 		940412702099932000B7A134 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9404126F2099932000B7A134 /* Assets.xcassets */; };
 		940412732099932000B7A134 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 940412712099932000B7A134 /* Main.storyboard */; };
 		9404127E209996E600B7A134 /* Encryptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9404127D209996E600B7A134 /* Encryptor.swift */; };
+		944F503420ABEE0200CF5817 /* FileEndecryptViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 944F503320ABEE0200CF5817 /* FileEndecryptViewController.swift */; };
 		9451CE5120A4701D0018C5C0 /* EncryptorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9451CE5020A4701D0018C5C0 /* EncryptorViewController.swift */; };
 		9451CE5420A470310018C5C0 /* DecryptorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9451CE5220A470310018C5C0 /* DecryptorViewController.swift */; };
 		9451CE5920A470940018C5C0 /* EndecryptorTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9451CE5820A470940018C5C0 /* EndecryptorTabViewController.swift */; };
@@ -29,6 +30,8 @@
 		940412742099932000B7A134 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		940412752099932000B7A134 /* Endecryption.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Endecryption.entitlements; sourceTree = "<group>"; };
 		9404127D209996E600B7A134 /* Encryptor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Encryptor.swift; sourceTree = "<group>"; };
+		944F502C20ABDF5D00CF5817 /* Endecryption_Bridge_Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Endecryption_Bridge_Header.h; sourceTree = "<group>"; };
+		944F503320ABEE0200CF5817 /* FileEndecryptViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileEndecryptViewController.swift; sourceTree = "<group>"; };
 		9451CE5020A4701D0018C5C0 /* EncryptorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EncryptorViewController.swift; sourceTree = "<group>"; };
 		9451CE5220A470310018C5C0 /* DecryptorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecryptorViewController.swift; sourceTree = "<group>"; };
 		9451CE5820A470940018C5C0 /* EndecryptorTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndecryptorTabViewController.swift; sourceTree = "<group>"; };
@@ -53,6 +56,7 @@
 			children = (
 				9404126A2099931D00B7A134 /* Endecryption */,
 				940412692099931D00B7A134 /* Products */,
+				944F502920ABDF2500CF5817 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -72,16 +76,25 @@
 				9404126D2099931D00B7A134 /* EndecryptorViewController.swift */,
 				9451CE5020A4701D0018C5C0 /* EncryptorViewController.swift */,
 				9451CE5220A470310018C5C0 /* DecryptorViewController.swift */,
+				944F502C20ABDF5D00CF5817 /* Endecryption_Bridge_Header.h */,
 				9404127D209996E600B7A134 /* Encryptor.swift */,
 				94CC348F209DF5410000C607 /* Decryptor.swift */,
 				9451CE5C20A51CB90018C5C0 /* KeyGenerator.swift */,
 				9451CE5A20A517290018C5C0 /* KeyGeneratorViewController.swift */,
+				944F503320ABEE0200CF5817 /* FileEndecryptViewController.swift */,
 				9404126F2099932000B7A134 /* Assets.xcassets */,
 				940412712099932000B7A134 /* Main.storyboard */,
 				940412742099932000B7A134 /* Info.plist */,
 				940412752099932000B7A134 /* Endecryption.entitlements */,
 			);
 			path = Endecryption;
+			sourceTree = "<group>";
+		};
+		944F502920ABDF2500CF5817 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -116,6 +129,11 @@
 				TargetAttributes = {
 					940412672099931D00B7A134 = {
 						CreatedOnToolsVersion = 9.3;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -159,6 +177,7 @@
 				9404126E2099931D00B7A134 /* EndecryptorViewController.swift in Sources */,
 				9404127E209996E600B7A134 /* Encryptor.swift in Sources */,
 				9451CE5B20A517290018C5C0 /* KeyGeneratorViewController.swift in Sources */,
+				944F503420ABEE0200CF5817 /* FileEndecryptViewController.swift in Sources */,
 				9451CE5D20A51CB90018C5C0 /* KeyGenerator.swift in Sources */,
 				9451CE5420A470310018C5C0 /* DecryptorViewController.swift in Sources */,
 				94CC3490209DF5410000C607 /* Decryptor.swift in Sources */,
@@ -306,8 +325,13 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SDKROOT)/usr/lib/system",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.dove.Endecryption;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = Endecryption/Endecryption_Bridge_Header.h;
 				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
@@ -325,8 +349,13 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SDKROOT)/usr/lib/system",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.dove.Endecryption;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = Endecryption/Endecryption_Bridge_Header.h;
 				SWIFT_VERSION = 4.0;
 			};
 			name = Release;

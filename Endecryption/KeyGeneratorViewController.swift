@@ -62,20 +62,20 @@ class KeyGeneratorViewController: NSViewController {
         primes = rsaKeyGenerator.genratePrime(rsaKeyGenerator.𝜑)
     }
     @IBAction func skValueSlider(_ sender: NSSlider) {
-//        enableGenerateButton()
+        enableGenerateButton()
         let sk = primes[sender.integerValue]
         skValue.stringValue = String(sk)
         pkValue.integerValue = sk.inverse(mod: rsaKeyGenerator.n)
     }
     
     @IBAction func skValueTextField(_ sender: NSTextField) {
-//        enableGenerateButton()
+        enableGenerateButton()
     }
     
     @IBAction func generateKey(_ sender: NSButton) {
         let result = rsaKeyGenerator.genrateKey(with: skValue.integerValue)
         publicKeyTextField.stringValue = "{ \(result.KU.pk), \(result.KU.n) }"
-        privateKeyTextField.stringValue = "{ \(result.KR.sk), \(result.KR.n) å}"
+        privateKeyTextField.stringValue = "{ \(result.KR.sk), \(result.KR.n) }"
     }
     
     

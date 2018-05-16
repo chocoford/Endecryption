@@ -16,11 +16,18 @@ struct Decryptor {
     var count: Int {
         return Encryptor.validCharacter.count
     }
+     
+    static let validCharacter: [Character] = {
+        var characters = [Character]()
+        for i in 32...127 {
+            characters.append(Character.init(UnicodeScalar.init(i)!))
+        }
+        return characters
+    }()
     
-    static let validCharacter: [Character] = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
-    
-    init(_ cryptograph: String) {
+    init(_ cryptograph: String, key: String? = nil) {
         self.cryptograph = cryptograph
+        self.key = key == "" ? nil : key
     }
     
     func affineCipher() -> String {
@@ -39,7 +46,7 @@ struct Decryptor {
         
         print(Int.prime(upto :121))
         for e in cryptograph {
-            if e == " " {
+            if e == "\n" {
                 plaintext.append(e)
                 continue
             }
@@ -69,7 +76,7 @@ struct Decryptor {
         let keysCount = keys.count
         var i = 0
         for e in cryptograph {
-            if e == " " {
+            if e == "\n" {
                 plaintext.append(e)
                 continue
             }
@@ -90,7 +97,7 @@ struct Decryptor {
             return "THE KEY MUST BE A PRIME ACCORDING TO THE NUMBER OF VALID CHARACTER"
         }
         for e in cryptograph {
-            if e == " " {
+            if e == "\n" {
                 plaintext.append(e)
                 continue
             }
@@ -138,6 +145,43 @@ struct Decryptor {
         return plaintext
     }
     
+    func des(_ inputData: Data) -> String{
+//        let inputData = cryptograph.data(using: .utf8)!
+        if key == nil {
+            return "PLEASE INPUT KEY."
+        }
+        let keyData: Data = key!.data(using: String.Encoding.utf8, allowLossyConversion: false)!
+        let keyBytes = UnsafeMutableRawPointer(mutating: (keyData as NSData).bytes)
+        let keyLength = size_t(kCCKeySize3DES)
+        let dataLength = Int(inputData.count)
+        let dataBytes = UnsafeRawPointer((inputData as NSData).bytes)
+        let bufferData = NSMutableData(length: Int(dataLength) + kCCBlockSize3DES)!
+        let bufferPointer = UnsafeMutableRawPointer(bufferData.mutableBytes)
+        let bufferLength = size_t(bufferData.length)
+        var bytesDecrypted = Int(0)
+        
+        let cryptStatus = CCCrypt(
+            UInt32(kCCDecrypt),
+            UInt32(kCCAlgorithm3DES),
+            UInt32(kCCOptionECBMode + kCCOptionPKCS7Padding),
+            keyBytes,
+            keyLength,
+            nil,
+            dataBytes,
+            dataLength,
+            bufferPointer,
+            bufferLength,
+            &bytesDecrypted)
+        
+        if Int32(cryptStatus) == Int32(kCCSuccess) {
+            bufferData.length = bytesDecrypted
+            let clearDataAsString = NSString(data: bufferData as Data, encoding: String.Encoding.utf8.rawValue)
+            return "解密后的内容：\(clearDataAsString! as String)"
+        } else {
+            return "解密过程出错: \(cryptStatus)"
+        }
+    }
+    
 }
 
 extension Int {
@@ -160,7 +204,9 @@ extension Int {
             
             ndx += 1
         }
-        
+        if ndx == 1 {
+            return t[1] % mod
+        }
         return ((t[ndx - 2] - q[ndx - 1] * t[ndx - 1]) + mod) % mod
     }
     func isRelativelyPrime(with num: Int) -> Bool {

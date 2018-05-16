@@ -16,11 +16,18 @@ struct Encryptor {
         return Encryptor.validCharacter.count
     }
     
-    static let validCharacter: [Character] = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
+    static let validCharacter: [Character] = {
+        var characters = [Character]()
+        for i in 32...127 {
+            characters.append(Character.init(UnicodeScalar.init(i)!))
+        }
+        return characters
+    }()
     
-    init(_ plaintext: String) {
+    
+    init(_ plaintext: String, key: String? = nil) {
         self.plaintext = plaintext
-        self.key = nil
+        self.key = key == "" ? nil: key
     }
     
     func transposition() -> String {
@@ -37,7 +44,7 @@ struct Encryptor {
             return "THE KEY MUST BE A PRIME ACCORDING TO THE NUMBER OF VALID CHARACTER"
         }
         for e in plaintext {
-            if e == " " {
+            if e == " " || e == "\n" {
                 cryptograph.append(e)
                 continue
             }
@@ -64,7 +71,7 @@ struct Encryptor {
         let keysCount = keys.count
         var i = 0
         for e in plaintext {
-            if e == " " {
+            if e == "\n" {
                 cryptograph.append(e)
                 continue
             }
@@ -85,37 +92,15 @@ struct Encryptor {
         }
         print(Int.prime(upto :121))
         for e in plaintext {
-            if e == " " {
+            if e == "\n" || e == " " {
                 cryptograph.append(e)
                 continue
             }
+            print(e)
             cryptograph.append(Encryptor.validCharacter[(Encryptor.validCharacter.index(of: e)! * k1 + k0) % count])
         }
         
         return cryptograph
-    }
-    
-    func rsaGenerator() -> String {
-//        var cryptograph = ""
-        
-        guard let keys = key?.split(separator: ","),
-            keys.count == 2,
-            let p = Int(keys[0]),
-            let q = Int(keys[1]) else {
-                return "INVALID KEY. CHECK IF YOU HAVE INPUT KEYS WITH WRONG FORMAT"
-        }
-        let n = p * q
-        let fi = (p-1) * (q-1)
-        guard fi > 0 else { return "ERROR: FI IS EQUAL TO 0"}
-//        print(Int.prime(upto: fi))
-        
-        let sk = 167
-        let pk = sk.inverse(mod: fi)
-        
-        
-        
-//        return Int.prime(upto: fi).description
-        return "KU = { \(pk), \(n) }  KR = { \(sk), \(n) }"
     }
     
     func rsa() -> String {
@@ -160,6 +145,54 @@ struct Encryptor {
     private func gcd() -> Int {
         return 1
     }
+    
+    func des() -> (string: String, data: Data) {
+        let key: String = {
+            let randomStringArray: [Character] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".map({$0})
+            var string = ""
+            for _ in (1...kCCKeySize3DES) {
+                string.append(randomStringArray[Int(arc4random_uniform(
+                    UInt32(randomStringArray.count) - 1))])
+            }
+            return string
+        }()
+        let inputData : Data = plaintext.data(using: String.Encoding.utf8)!
+        
+        let keyData: Data = key.data(using: String.Encoding.utf8, allowLossyConversion: false)!
+        let keyBytes = UnsafeMutableRawPointer(mutating: (keyData as NSData).bytes)
+        let keyLength = size_t(kCCKeySize3DES)
+        
+        let dataLength = Int(inputData.count)
+        let dataBytes = UnsafeRawPointer((inputData as NSData).bytes)
+        let bufferData = NSMutableData(length: Int(dataLength) + kCCBlockSize3DES)!
+        let bufferPointer = UnsafeMutableRawPointer(bufferData.mutableBytes)
+        let bufferLength = size_t(bufferData.length)
+        var bytesDecrypted = Int(0)
+        
+        let cryptStatus = CCCrypt(
+            UInt32(kCCEncrypt),
+            UInt32(kCCAlgorithm3DES),
+            UInt32(kCCOptionECBMode + kCCOptionPKCS7Padding),
+            keyBytes,
+            keyLength,
+            nil,
+            dataBytes,
+            dataLength,
+            bufferPointer,
+            bufferLength,
+            &bytesDecrypted)
+        
+        if Int32(cryptStatus) == Int32(kCCSuccess) {
+            bufferData.length = bytesDecrypted
+            var dec = Decryptor.init("")
+            dec.key = key
+            
+            return ("随机生成的密钥为\(key)\n解密结果为\(dec.des(bufferData as Data))", bufferData as Data)
+        } else {
+            return ("加密过程出错: \(cryptStatus)", Data())
+        }
+    }
+    
 }
 
 
@@ -178,12 +211,9 @@ extension Int {
         }()
         
         var i = 2
-//        var ndx = 0
         while pow(Double(i), 2) <= Double(upperLimit) {
-//            let resultsCopy = results
             print(results.suffix(from: i-2).count)
             for j in results.suffix(from: i-2) {
-//                guard results.contains(j) else { continue }
                 if j * i > upperLimit { break }
                 
                 if let index = results.index(of: j * i) {
