@@ -44,7 +44,7 @@ struct Encryptor {
             return "THE KEY MUST BE A PRIME ACCORDING TO THE NUMBER OF VALID CHARACTER"
         }
         for e in plaintext {
-            if e == " " || e == "\n" {
+            if e == "\n" {
                 cryptograph.append(e)
                 continue
             }
@@ -92,7 +92,7 @@ struct Encryptor {
         }
         print(Int.prime(upto :121))
         for e in plaintext {
-            if e == "\n" || e == " " {
+            if e == "\n" {
                 cryptograph.append(e)
                 continue
             }
@@ -147,15 +147,22 @@ struct Encryptor {
     }
     
     func des() -> (string: String, data: Data) {
-        let key: String = {
-            let randomStringArray: [Character] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".map({$0})
-            var string = ""
-            for _ in (1...kCCKeySize3DES) {
-                string.append(randomStringArray[Int(arc4random_uniform(
-                    UInt32(randomStringArray.count) - 1))])
-            }
-            return string
-        }()
+        let key: String!
+        if self.key == nil {
+            key = {
+                let randomStringArray: [Character] = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789".map({$0})
+                var string = ""
+                for _ in (1...kCCKeySize3DES) {
+                    string.append(randomStringArray[Int(arc4random_uniform(
+                        UInt32(randomStringArray.count) - 1))])
+                }
+                return string
+            }()
+        } else {
+            guard self.key!.count == kCCKeySize3DES else { return ("INVALID KEY. THE NUMBER OF KEY MUST BE 24 AND IT MUST CONTAINS OF ALPHA AND NUMBER.", Data.init())}
+            key = self.key!
+        }
+        
         let inputData : Data = plaintext.data(using: String.Encoding.utf8)!
         
         let keyData: Data = key.data(using: String.Encoding.utf8, allowLossyConversion: false)!
@@ -187,10 +194,23 @@ struct Encryptor {
             var dec = Decryptor.init("")
             dec.key = key
             
-            return ("随机生成的密钥为\(key)\n解密结果为\(dec.des(bufferData as Data))", bufferData as Data)
+            return ("随机生成(或您输入的)的密钥为:\n\(key!)\n \n您可以选择保存并在解密中验证结果。", bufferData as Data)
         } else {
             return ("加密过程出错: \(cryptStatus)", Data())
         }
+    }
+    
+    func md5() -> String {
+        let data = plaintext.data(using: .utf8)!
+        let dataPtr = NSData(data: data).bytes
+        let cryptograph = calloc(16 * MemoryLayout<UInt8>.size, MemoryLayout<UInt8>.size)!.bindMemory(to: UInt8.self, capacity: 16)
+        CC_MD5(dataPtr, UInt32(plaintext.count), cryptograph)
+        var string = ""
+        for i in 0..<16 {
+            string = string.appendingFormat("%02x", cryptograph[i])
+        }
+        
+        return string
     }
     
 }

@@ -41,6 +41,8 @@ class FileEndecryptViewController: NSViewController {
         // Do view setup here.
         commitButton.isEnabled = false
         saveButton.isEnabled = false
+        keyTextField.isEnabled = true
+        keyTextField.placeholderString = "Need a pair of int values here for key (k0, k1). eg: 3,7"
     }
     
     @IBAction func openFile(_ sender: NSButton) {
@@ -66,6 +68,29 @@ class FileEndecryptViewController: NSViewController {
             
         }
     }
+    @IBAction func cryptTypeDidChange(_ sender: NSPopUpButton) {
+        switch sender.selectedItem!.title {
+        case "Affine Cipher":
+            keyTextField.isEnabled = true
+            keyTextField.placeholderString = "Need a pair of int values here for key (k0, k1). eg: 3,7"
+        case "Multiplication Cipher":
+            keyTextField.isEnabled = true
+            keyTextField.placeholderString = "Need a int value here for key (k). eg: 3"
+        case "Vingenère":
+            keyTextField.isEnabled = true
+            keyTextField.placeholderString = "Need a series of int values here for key (k0, k1, ···, kd). eg: 31,7,8,13,10"
+        case "RSA":
+            keyTextField.isEnabled = true
+            keyTextField.placeholderString = "The key is (sk(or pk), n, m(split num, optional)). eg: 167,2867,3"
+        case "DES":
+            keyTextField.isEnabled = true
+            keyTextField.placeholderString = "It's up to you to input key here. Random generated if empty."
+        case "MD5":
+            keyTextField.isEnabled = false
+            keyTextField.placeholderString = "No need for inputing here."
+        default: break
+        }
+    }
     
     @IBAction func commit(_ sender: NSButton) {
         switch behaviorStyle.selectedItem?.title {
@@ -84,6 +109,8 @@ class FileEndecryptViewController: NSViewController {
                 let result = encryptor.des()
                 outputFile = result.string
                 outputData = result.data
+            case "MD5":
+                outputFile = encryptor.md5()
             default: break
             }
         case "decrypt":

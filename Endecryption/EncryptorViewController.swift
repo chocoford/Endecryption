@@ -34,6 +34,8 @@ class EncryptorViewController: EndecryptorViewController {
             (cryptographScrollView.contentView.documentView as! NSTextView).string = encryptor.rsa()
         case "DES":
             (cryptographScrollView.contentView.documentView as! NSTextView).string = encryptor.des().0
+        case "MD5":
+            (cryptographScrollView.contentView.documentView as! NSTextView).string = encryptor.md5()
         default:
             break
         }

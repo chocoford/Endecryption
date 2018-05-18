@@ -14,7 +14,7 @@ struct Decryptor {
     var key: String?
     
     var count: Int {
-        return Encryptor.validCharacter.count
+        return Decryptor.validCharacter.count
     }
      
     static let validCharacter: [Character] = {
@@ -50,7 +50,8 @@ struct Decryptor {
                 plaintext.append(e)
                 continue
             }
-            plaintext.append(Encryptor.validCharacter[((Encryptor.validCharacter.index(of: e)! -  k0) * k1.inverse(mod: count)) % count])
+            print(((Decryptor.validCharacter.index(of: e)! -  k0) * k1.inverse(mod: count) % count + count) % count, ((Decryptor.validCharacter.index(of: e)! -  k0) * k1.inverse(mod: count)), count)
+            plaintext.append(Decryptor.validCharacter[((Decryptor.validCharacter.index(of: e)! -  k0) * k1.inverse(mod: count) % count + count) % count])
         }
         
         return plaintext
@@ -80,7 +81,7 @@ struct Decryptor {
                 plaintext.append(e)
                 continue
             }
-            plaintext.append(Encryptor.validCharacter[(Decryptor.validCharacter.index(of: e)! - Int(keys[i])! + count) % count])
+            plaintext.append(Decryptor.validCharacter[(Decryptor.validCharacter.index(of: e)! - Int(keys[i])! + count) % count])
             i = (i + 1) % keysCount
         }
         return plaintext
@@ -101,7 +102,7 @@ struct Decryptor {
                 plaintext.append(e)
                 continue
             }
-            plaintext.append(Encryptor.validCharacter[(Decryptor.validCharacter.index(of: e)! * key.inverse(mod: count)) % count])
+            plaintext.append(Decryptor.validCharacter[(Decryptor.validCharacter.index(of: e)! * key.inverse(mod: count)) % count])
         }
         return plaintext
     }

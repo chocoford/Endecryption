@@ -678,7 +678,7 @@
                 <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="0.0"/>
+            <point key="canvasLocation" x="65" y="-92"/>
         </scene>
         <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">
@@ -687,7 +687,7 @@
                     <window key="window" title="Endecryptor" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="196" y="240" width="480" height="310"/>
+                        <rect key="contentRect" x="196" y="240" width="480" height="420"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
                         <connections>
                             <outlet property="delegate" destination="B8D-0N-5wS" id="98r-iN-zZc"/>
@@ -804,6 +804,7 @@
                                             <menuItem title="Vingenère" tag="2" id="QQn-wb-Mnh"/>
                                             <menuItem title="RSA" tag="2" id="5Rh-Y0-Ahd"/>
                                             <menuItem title="DES" tag="2" id="ynf-Kp-wX4"/>
+                                            <menuItem title="MD5" tag="2" id="8v3-aj-P6F"/>
                                         </items>
                                     </menu>
                                 </popUpButtonCell>
@@ -1321,9 +1322,13 @@
                                             <menuItem title="Vingenère" tag="2" id="u6t-UB-Mgz"/>
                                             <menuItem title="RSA" tag="2" id="pex-wT-Lbk"/>
                                             <menuItem title="DES" tag="2" id="eJE-P9-hpO"/>
+                                            <menuItem title="MD5" tag="2" id="M0U-Tc-oEC"/>
                                         </items>
                                     </menu>
                                 </popUpButtonCell>
+                                <connections>
+                                    <action selector="cryptTypeDidChange:" target="ITQ-RG-xzI" id="jK9-Pi-yhq"/>
+                                </connections>
                             </popUpButton>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ndM-Lf-RTV">
                                 <rect key="frame" x="18" y="380" width="46" height="21"/>

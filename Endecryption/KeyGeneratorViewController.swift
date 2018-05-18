@@ -74,8 +74,8 @@ class KeyGeneratorViewController: NSViewController {
     
     @IBAction func generateKey(_ sender: NSButton) {
         let result = rsaKeyGenerator.genrateKey(with: skValue.integerValue)
-        publicKeyTextField.stringValue = "{ \(result.KU.pk), \(result.KU.n) }"
-        privateKeyTextField.stringValue = "{ \(result.KR.sk), \(result.KR.n) }"
+        publicKeyTextField.stringValue = "{ \(result.KU.pk),\(result.KU.n) }"
+        privateKeyTextField.stringValue = "{ \(result.KR.sk),\(result.KR.n) }"
     }
     
     
