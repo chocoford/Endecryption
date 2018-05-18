@@ -1,7 +1,8 @@
 <h1 id="toc_0">Endecryption</h1>
 
-<p>It is a demo of implementation of some encryption and decryption algorithm.
-<img src="Readme_Resource/introduce%20and%20file%20func.gif" alt=""></p>
+<p>It is a demo of implementation of some encryption and decryption algorithm.</p>
+
+<p><img src="Readme_Resource/introduce%20and%20file%20func.gif" alt=""></p>
 
 <h2 id="toc_1">How to use</h2>
 
