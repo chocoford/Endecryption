@@ -16,7 +16,7 @@
 
 <h2 id="toc_2">How to use</h2>
 
-<p>In this demo. There are 4 views which have respective functions. They are <code>encrypt</code>, <code>decrypt</code>, <code>key generate</code> and <code>file</code>.(yah..maybe the name may confuse you, and I admit the name isn&#39;t so prcise..)</p>
+<p>In this demo. There are 4 views which have respective functions. They are <code>encrypt</code>, <code>decrypt</code>, <code>key generate</code> and <code>file</code>.(yah..maybe the names may confuse you, and I admit the name isn&#39;t so accuracy..)</p>
 
 <p>For each action Type. There are several encrypt or decrypt type. You can choose a type and input some strings acting as plaintext(or cryptograph, depending on you are doing a encryption or decryption) and see the encryption result(or decryption result).</p>
 
@@ -27,3 +27,7 @@
 <p><img src="Readme_Resource/endecrypt%20gif.gif" alt="affine cipher">  </p>
 
 <p>note that affine cipher takes to integer value as key. And I input 11 and 7 here.</p>
+
+<p>genrate keys for rsa encryption and decryption.</p>
+
+<p><img src="Readme_Resource/key%20generate%20gif.gif" alt="rsa key generate"></p>

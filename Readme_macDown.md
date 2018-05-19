@@ -14,7 +14,7 @@ Both encryption and decryption type listed above can be done with file.
 
 
 ##How to use
-In this demo. There are 4 views which have respective functions. They are `encrypt`, `decrypt`, `key generate` and `file`.(yah..maybe the name may confuse you, and I admit the name isn't so prcise..)
+In this demo. There are 4 views which have respective functions. They are `encrypt`, `decrypt`, `key generate` and `file`.(yah..maybe the names may confuse you, and I admit the name isn't so accuracy..)
 
 For each action Type. There are several encrypt or decrypt type. You can choose a type and input some strings acting as plaintext(or cryptograph, depending on you are doing a encryption or decryption) and see the encryption result(or decryption result).
 
@@ -24,3 +24,8 @@ encrypt and decrypt `hello world` with affine cipher.
 ![affine cipher](Readme_Resource/endecrypt gif.gif)  
 
 note that affine cipher takes to integer value as key. And I input 11 and 7 here.
+
+
+genrate keys for rsa encryption and decryption.
+
+![rsa key generate](Readme_Resource/key generate gif.gif)
